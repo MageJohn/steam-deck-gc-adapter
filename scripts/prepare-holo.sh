@@ -1,1 +1,1 @@
-pacman -Sy --noconfirm base-devel
+pacman -Sy --noconfirm base-devel git
