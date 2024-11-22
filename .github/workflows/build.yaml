@@ -22,3 +22,11 @@ jobs:
 
       - name: build
         run: ./scripts/build.sh
+
+      - name: package
+        run: ./scripts/package.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "dist-tar"
+          path: "steam-deck-gc-adapter.tar.gz"
