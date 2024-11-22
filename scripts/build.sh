@@ -29,8 +29,8 @@ echo -e "${Yel}Compiling object files${RCol}"
 # shellcheck disable=SC2046
 gcc -c -o wii-u-gc-adapter.o wii-u-gc-adapter.c \
   -Wall -Wextra -pedantic -Wno-format -std=c99 \
-  $(pkg-config --cflags udev)
-  \ "-I${OUT_DIR}/libusb/include/libusb-1.0" \
+  $(pkg-config --cflags udev) \
+  "-I${OUT_DIR}/libusb/include/libusb-1.0" \
   || exit
 # linking
 echo -e "${Yel}Linking${RCol}"
