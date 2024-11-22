@@ -1,1 +1,1 @@
-pacman -Sy base-devel
+pacman -Sy --noconfirm base-devel
