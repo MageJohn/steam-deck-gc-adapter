@@ -1,9 +1,8 @@
 name: Build wii-u-gc-adapter
 
 on:
-  push:
-    branches: [$default-branch]
-  workflow_dispatch:
+  - push
+  - workflow_dispatch
 
 jobs:
   build:
