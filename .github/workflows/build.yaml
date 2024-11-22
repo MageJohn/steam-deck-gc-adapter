@@ -10,12 +10,15 @@ jobs:
     container: ghcr.io/steamdeckhomebrew/holo-base:latest
 
     steps:
-      - name: prepare
-        run: ./scripts/prepare-holo.sh
+      - name: install-git
+        run: pacman -Sy --noconfirm git
 
       - uses: actions/checkout@v4
         with:
           submodules: "true"
+
+      - name: prepare
+        run: ./scripts/prepare-holo.sh
 
       - name: build
         run: ./scripts/build.sh
