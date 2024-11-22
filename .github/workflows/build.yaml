@@ -1,0 +1,19 @@
+name: Build wii-u-gc-adapter
+
+on:
+  push:
+    branches: [$default-branch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/steamdeckhomebrew/holo-base:latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: prepare
+        run: ./scripts/prepare-holo.sh
+
+      - name: build
+        run: ./scripts/build.sh
