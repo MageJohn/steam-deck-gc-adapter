@@ -32,7 +32,7 @@ echo -e "${Yel}Compiling object files${RCol}"
 gcc -c -o wii-u-gc-adapter.o wii-u-gc-adapter.c \
   -Wall -Wextra -pedantic -Wno-format -std=c99 \
   $(pkg-config --cflags udev) \
-  "-I${LIB_OUT_DIR}/libusb/include/libusb-1.0" \
+  "-I${LIB_OUT_DIR}/include/libusb-1.0" \
   || exit
 # linking
 echo -e "${Yel}Linking${RCol}"
