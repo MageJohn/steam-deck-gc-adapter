@@ -1,7 +1,7 @@
 [submodule "wii-u-gc-adapter"]
-	path = wii-u-gc-adapter
+	path = src/wii-u-gc-adapter
 	url = https://github.com/ToadKing/wii-u-gc-adapter.git
 [submodule "libusb"]
-	path = libusb
+	path = src/libusb
 	url = https://github.com/libusb/libusb.git
 	shallow = true

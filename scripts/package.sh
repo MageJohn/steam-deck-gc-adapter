@@ -6,13 +6,10 @@ ROOT=$(realpath "${SCRIPT_DIR}/..")
 # shellcheck source=./lib/colours.sh
 source "$SCRIPT_DIR/lib/colours.sh"
 
-cd "${ROOT}" || exit
-
 PROJECT_NAME=steam-deck-gc-adapter
-TAR_NAME="${PROJECT_NAME}.tar.gz"
-DIST_DIR="dist"
-ETC_DIR="etc"
-BIN_PATH="out/wii-u-gc-adapter"
+TAR_PATH="${ROOT}/${PROJECT_NAME}.tar.gz"
+PKG_DIR="${ROOT}/pkg"
+BIN_PATH="${ROOT}/wii-u-gc-adapter"
 
 if [[ ! -f "$BIN_PATH" ]]; then
   echo -e "${Red}wii-u-gc-adapter has not been built${RCol}"
@@ -20,9 +17,9 @@ if [[ ! -f "$BIN_PATH" ]]; then
   exit 1
 fi
 
-rm -rf "$DIST_DIR"
-mkdir -p "${DIST_DIR}/${PROJECT_NAME}"
+rm -rf "$PKG_DIR"
+mkdir -p "${PKG_DIR}/${PROJECT_NAME}"
 
-cp "${ETC_DIR}"/* "${BIN_PATH}" "${DIST_DIR}/${PROJECT_NAME}"
+cp -r etc "${BIN_PATH}" "${PKG_DIR}/${PROJECT_NAME}"
 
-tar -C "${DIST_DIR}" -caf "${TAR_NAME}" "${PROJECT_NAME}/"
+tar -C "${PKG_DIR}" -caf "${TAR_PATH}" "${PROJECT_NAME}/"
