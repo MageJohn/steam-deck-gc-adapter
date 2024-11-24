@@ -1,3 +1,4 @@
 /pkg
 *.tar.gz
 wii-u-gc-adapter
+/tools/venv
