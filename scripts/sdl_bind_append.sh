@@ -38,6 +38,6 @@ fi
 # shellcheck disable=SC1091
 source "venv/bin/activate"
 
-pip install -r requirements.txt
+pip install -r requirements.txt --find-links=wheels/
 
 python sdl_bind_append.py "$STEAM_CONFIG" "$BINDS_FILE"

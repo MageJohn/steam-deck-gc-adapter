@@ -26,5 +26,7 @@ cp -r etc "${BIN_PATH}" "${PKG_DIR}/${PROJECT_NAME}"
 mkdir -p "${PKG_DIR}/${PROJECT_NAME}/tools"
 cp "${TOOLS_PATH}/sdl_bind_append.py" "${TOOLS_PATH}/requirements.txt" \
   "${PKG_DIR}/${PROJECT_NAME}/tools"
+# include an offline copy of required python packages
+python -m pip download -r "${TOOLS_PATH}/requirements.txt" -d "${PKG_DIR}/${PROJECT_NAME}/wheels"
 
 tar -C "${PKG_DIR}" -caf "${TAR_PATH}" "${PROJECT_NAME}/"
