@@ -8,9 +8,9 @@ source "$SCRIPT_DIR/lib/colours.sh"
 
 PROJECT_NAME=steam-deck-gc-adapter
 TAR_PATH="${ROOT}/${PROJECT_NAME}.tar.gz"
-PKG_DIR="${ROOT}/pkg"
+PKG_PARENT="${ROOT}/pkg"
+PKG_DIR="${PKG_PARENT}/${PROJECT_NAME}"
 BIN_PATH="${ROOT}/wii-u-gc-adapter"
-TOOLS_PATH="${ROOT}/tools"
 
 if [[ ! -f "$BIN_PATH" ]]; then
   echo -e "${Red}wii-u-gc-adapter has not been built${RCol}"
@@ -18,15 +18,15 @@ if [[ ! -f "$BIN_PATH" ]]; then
   exit 1
 fi
 
-rm -rf "$PKG_DIR"
-mkdir -p "${PKG_DIR}/${PROJECT_NAME}"
+rm -rf "$PKG_PARENT"
+mkdir -p "$PKG_DIR"
 
-cp -r etc "${BIN_PATH}" "${PKG_DIR}/${PROJECT_NAME}"
+install -Dvm 0664 "$ROOT"/etc/* -t "${PKG_DIR}/etc"
+install -vm 0755 "$BIN_PATH" "$PKG_DIR"
+install -Dvm 0644 "$ROOT"/tools/*.py "${ROOT}/tools/requirements.txt" -t "${PKG_DIR}/tools"
 
-mkdir -p "${PKG_DIR}/${PROJECT_NAME}/tools"
-cp "${TOOLS_PATH}/sdl_bind_append.py" "${TOOLS_PATH}/requirements.txt" \
-  "${PKG_DIR}/${PROJECT_NAME}/tools"
 # include an offline copy of required python packages
-python -m pip download -r "${TOOLS_PATH}/requirements.txt" -d "${PKG_DIR}/${PROJECT_NAME}/wheels"
+python -m pip download -r "${ROOT}/tools/requirements.txt" -d "${PKG_DIR}/tools/wheels"
 
-tar -C "${PKG_DIR}" -caf "${TAR_PATH}" "${PROJECT_NAME}/"
+echo -e "Compressing package ${TAR_PATH}"
+tar -C "${PKG_PARENT}" -caf "${TAR_PATH}" "${PROJECT_NAME}/"
