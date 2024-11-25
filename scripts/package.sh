@@ -23,6 +23,7 @@ mkdir -p "$PKG_DIR"
 
 install -Dvm 0664 "$ROOT"/etc/* -t "${PKG_DIR}/etc"
 install -vm 0755 "$BIN_PATH" "$PKG_DIR"
+install -Dvm 0755 "${ROOT}/scripts/sdl_bind_append.sh" -t "${PKG_DIR}/scripts"
 install -Dvm 0644 "$ROOT"/tools/*.py "${ROOT}/tools/requirements.txt" -t "${PKG_DIR}/tools"
 
 # include an offline copy of required python packages
