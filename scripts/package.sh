@@ -28,8 +28,11 @@ install -Dvm 0755 "${ROOT}/scripts/sdl_bind_append.sh" -t "${PKG_DIR}/scripts"
 install -Dvm 0755 "${ROOT}/scripts/install.sh" -t "${PKG_DIR}/scripts"
 install -Dvm 0664 "$ROOT"/tools/*.py "${ROOT}/tools/requirements.txt" -t "${PKG_DIR}/tools"
 
+python -m pip --version > /dev/null || python -m ensurepip
 # include an offline copy of required python packages
-python -m pip download -r "${ROOT}/tools/requirements.txt" -d "${PKG_DIR}/tools/wheels"
+python -m pip download -r "${ROOT}/tools/requirements.txt" -d "${PKG_DIR}/tools/wheels" \
+  || exit 1
 
 echo -e "Compressing package ${TAR_PATH}"
-tar -C "${PKG_PARENT}" -caf "${TAR_PATH}" "${PROJECT_NAME}/"
+tar -C "${PKG_PARENT}" -caf "${TAR_PATH}" "${PROJECT_NAME}/" \
+  || exit 1
