@@ -23,6 +23,7 @@ mkdir -p "$PKG_DIR"
 
 install -Dvm 0664 "$ROOT"/etc/* -t "${PKG_DIR}/etc"
 install -svm 0755 "$BIN_PATH" "$PKG_DIR"
+install -Dvm 0664 "${ROOT}/scripts/lib/colours.sh" -t "${PKG_DIR}/scripts/lib"
 install -Dvm 0755 "${ROOT}/scripts/sdl_bind_append.sh" -t "${PKG_DIR}/scripts"
 install -Dvm 0664 "$ROOT"/tools/*.py "${ROOT}/tools/requirements.txt" -t "${PKG_DIR}/tools"
 
