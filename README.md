@@ -1,3 +1,5 @@
+[![Build & Package](https://github.com/MageJohn/steam-deck-gc-adapter/actions/workflows/build.yaml/badge.svg)](https://github.com/MageJohn/steam-deck-gc-adapter/actions/workflows/build.yaml)
+
 # GameCube adapter driver for Steam Deck
 
 **Under construction**
