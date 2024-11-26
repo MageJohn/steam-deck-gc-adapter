@@ -16,8 +16,9 @@ def main(file, def_file):
     data = None
     Path(file).touch(exist_ok=True)
     with open(file, "r") as f:
-        data = vdf.load(f)
-    store = data.setdefault("InstallConfigStore", {})
+        # VDFDict in case the config ever has duplicate keys
+        data = vdf.load(f, mapper=vdf.VDFDict)
+    store = data.setdefault("InstallConfigStore", vdf.VDFDict())
     sdl_binds = store.setdefault("SDL_GamepadBind", "").splitlines()
 
     defs = None
@@ -25,7 +26,7 @@ def main(file, def_file):
         defs = [l.strip() for l in f]
 
     sdl_binds.extend(defs)
-    store["SDL_GamepadBind"] = "\n".join(sdl_binds)
+    store[(0, "SDL_GamepadBind")] = "\n".join(sdl_binds)
     with open(file, "w") as f:
         vdf.dump(data, f, pretty=True, escaped=False)
 
