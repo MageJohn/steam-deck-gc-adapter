@@ -28,7 +28,7 @@ fi
 
 echo -e "${Blu}Installing systemd unit${RCol}"
 install -Dvm 0664 "$ROOT/etc/wii-u-gc-adapter.service" -t "$XDG_CONFIG_HOME/systemd/user"
-echo -e "${Blu}Installing wii-ugc-adapter executable${RCol}"
+echo -e "${Blu}Installing wii-u-gc-adapter executable${RCol}"
 install -Dvm 0755 "$ROOT/wii-u-gc-adapter" -t "$HOME/.local/bin"
 
 echo -e "${Blu}Configuring GameCube controller bindings${RCol}"
