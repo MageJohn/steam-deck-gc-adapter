@@ -1,4 +1,4 @@
-name: Build wii-u-gc-adapter
+name: Build & Package
 
 on:
   - push
