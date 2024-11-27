@@ -9,7 +9,7 @@ on_exit(){
 trap on_exit EXIT
 
 # This line is kept up to date by prepare-release.sh
-VERSION=v0.0.0
+VERSION=v0.0.1
 
 cd /tmp
 echo "Downloading package to /tmp"
