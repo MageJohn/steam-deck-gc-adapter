@@ -38,6 +38,7 @@ jobs:
         with:
           generate_release_notes: true
           fail_on_unmatched_files: true
+          preserve_order: true
           files: |
             scripts/bootstrap.sh
             steam-deck-gc-adapter.tar.gz
