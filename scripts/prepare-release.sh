@@ -61,5 +61,5 @@ git add "$ROOT/scripts/bootstrap.sh"
 git commit -m "Bump version in bootstrap.sh to $new_version"
 git tag -a "$new_version" -m ''
 
-echo "${Blu}Inspect the changes and then push them with \`git push --follow-tags\`" \
+echo -e "${Blu}Inspect the changes and then push them with \`git push --follow-tags\`" \
   "to create a Github Release${RCol}"
