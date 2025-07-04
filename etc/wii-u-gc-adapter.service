@@ -4,6 +4,3 @@ Description=Wii U GC Adapter
 [Service]
 TimeoutStartSec=infinity
 ExecStart=sh -c "${HOME}/.local/bin/wii-u-gc-adapter"
-
-[Install]
-WantedBy=default.target
