@@ -14,20 +14,6 @@ if [[ ! -x "$ROOT/wii-u-gc-adapter" ]]; then
   exit 1
 fi
 
-echo -e "${Blu}Installing udev rule (requires superuser)${RCol}"
-# pkexec is similar to sudo, but can skip the password if the user doesn't have
-# one set, and will show a graphical password prompt. It also accepts a script
-# on standard input, which we use here.
-pkexec <<EOF
-  install -Dvm 0664 "$ROOT/etc/51-gcadapter.rules" -t /etc/udev/rules.d/
-  udevadm control --reload-rules
-EOF
-
-if [[ $? == 126 || $? == 127 ]]; then
-  echo -e "${Red}Could not acquire super user privileges. Aborting${RCol}"
-  exit 1
-fi
-
 if [[ -z "$XDG_CONFIG_HOME" ]]; then
   XDG_CONFIG_HOME="$HOME/.config"
 fi

@@ -12,7 +12,7 @@ On your Steam Deck, enter Desktop Mode and open Konsole. Then run the following 
 curl -L "https://github.com/MageJohn/steam-deck-gc-adapter/releases/latest/download/bootstrap.sh" | bash
 ```
 
-If you have a sudo password set you will be prompted to enter it. When it finishes you can plug in an adapter and test it out in Steam or a game!
+When it finishes you can plug in an adapter and test it out in Steam or a game!
 
 ## Technical information
 
