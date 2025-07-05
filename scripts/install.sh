@@ -19,10 +19,10 @@ if [[ -z "$XDG_CONFIG_HOME" ]]; then
 fi
 
 echo -e "${Blu}Installing systemd unit${RCol}"
-install -Dvm 0664 "$ROOT/etc/wii-u-gc-adapter.service" -t "$XDG_CONFIG_HOME/systemd/user"
-install -Dvm 0664 "$ROOT/etc/wii-u-gc-adapter.target" -t "$XDG_CONFIG_HOME/systemd/user"
+install -Dvm 0664 "$ROOT/etc/wii-u-gc-adapter.service" -t "$XDG_CONFIG_HOME/systemd/user" || exit 1
+install -Dvm 0664 "$ROOT/etc/wii-u-gc-adapter.timer" -t "$XDG_CONFIG_HOME/systemd/user" || exit 1
 echo -e "${Blu}Installing wii-u-gc-adapter executable${RCol}"
-install -Dvm 0755 "$ROOT/wii-u-gc-adapter" -t "$HOME/.local/bin"
+install -Dvm 0755 "$ROOT/wii-u-gc-adapter" -t "$HOME/.local/bin" || exit 1
 
 echo -e "${Blu}Enabling systemd unit${RCol}"
 systemctl enable --user wii-u-gc-adapter.timer || exit 1
