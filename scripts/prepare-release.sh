@@ -9,10 +9,11 @@ ROOT=$(realpath "$SCRIPT_DIR/..")
 source "$SCRIPT_DIR/lib/colours.sh"
 
 _usage() {
-  echo "$0 [-p | --patch] [-m | --minor] [-M | --major]"
+  echo "$0 [-p | --patch] [-m | --minor] [-M | --major] [-d | --dry-run]"
 }
 
 BUMP="patch"
+DRY=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -24,6 +25,9 @@ while [[ $# -gt 0 ]]; do
     ;;
     -M|--major)
       BUMP="major"
+    ;;
+    -d|--dry-run)
+      DRY=1
     ;;
     *)
       _usage
@@ -41,7 +45,20 @@ read -r major minor patch <<<"$cur_ver_split"
 
 declare $BUMP=$((${!BUMP} + 1))
 
+if [[ "$BUMP" == "minor" ]]; then
+  patch="0"
+fi
+if [[ "$BUMP" == "major" ]]; then
+  patch="0"
+  minor="0"
+fi
+
 new_version="v${major}.${minor}.${patch}"
+
+if [[ "$DRY" == "1" ]]; then
+  echo "New version: $new_version"
+  exit 0
+fi
 
 if ! git diff --quiet; then
   echo -e "Stashing changes"
