@@ -24,14 +24,7 @@ mkdir -p "$PKG_DIR"
 install -Dvm 0664 "$ROOT"/etc/* -t "${PKG_DIR}/etc"
 install -svm 0755 "$BIN_PATH" "$PKG_DIR"
 install -Dvm 0664 "${ROOT}/scripts/lib/colours.sh" -t "${PKG_DIR}/scripts/lib"
-install -Dvm 0755 "${ROOT}/scripts/sdl_bind_append.sh" -t "${PKG_DIR}/scripts"
 install -Dvm 0755 "${ROOT}/scripts/install.sh" -t "${PKG_DIR}/scripts"
-install -Dvm 0664 "$ROOT"/tools/*.py "${ROOT}/tools/requirements.txt" -t "${PKG_DIR}/tools"
-
-python -m venv venv
-# include an offline copy of required python packages
-venv/bin/pip download -r "${ROOT}/tools/requirements.txt" -d "${PKG_DIR}/tools/wheels" \
-  || exit 1
 
 echo -e "Compressing package ${TAR_PATH}"
 tar -C "${PKG_PARENT}" -caf "${TAR_PATH}" "${PROJECT_NAME}/" \

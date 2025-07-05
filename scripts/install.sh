@@ -24,9 +24,6 @@ install -Dvm 0664 "$ROOT/etc/wii-u-gc-adapter.target" -t "$XDG_CONFIG_HOME/syste
 echo -e "${Blu}Installing wii-u-gc-adapter executable${RCol}"
 install -Dvm 0755 "$ROOT/wii-u-gc-adapter" -t "$HOME/.local/bin"
 
-echo -e "${Blu}Configuring GameCube controller bindings${RCol}"
-"$SCRIPT_DIR"/sdl_bind_append.sh
-
 echo -e "${Blu}Enabling systemd unit${RCol}"
 systemctl enable --user wii-u-gc-adapter.timer || exit 1
 systemctl start --user wii-u-gc-adapter.service || exit 1
